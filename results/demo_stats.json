@@ -1,0 +1,16 @@
+{
+  "image_size": "64x64",
+  "changed_pixels": 740,
+  "pct_changed": 18.06640625,
+  "hectares": 7.4,
+  "masked_pct": 0.0,
+  "cloud_mask_source": "none",
+  "patches": 3,
+  "suspicious_patches": 0,
+  "authorised_patches": 0,
+  "pixel_size": 10,
+  "threshold": 0.5,
+  "alert_limit_ha": 1.0,
+  "alert": true,
+  "warnings": []
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% block body %}
+{% if error %}<div class="banner err"><b>Could not run detection:</b> {{ error }}</div>{% endif %}
+<h2>New detection</h2>
+<form method="post" action="/detect" enctype="multipart/form-data" class="card">
+ <div class="grid">
+  <div><label>BEFORE image</label><input type="file" name="before" accept=".png,.jpg,.jpeg,.tif,.tiff" required><div class="hint">Earlier image. PNG/JPG, or GeoTIFF (B02,B03,B04,B08 [+SCL])</div></div>
+  <div><label>AFTER image</label><input type="file" name="after" accept=".png,.jpg,.jpeg,.tif,.tiff" required><div class="hint">Same area, later date. Resized to match BEFORE.</div></div>
+  <div><label>Detector</label><select name="detector">{% for k, v in detectors.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select>
+   <div class="hint">Synthetic-trained or rule-based detectors are not validated on real data.</div></div>
+ </div>
+ <div class="grid" style="margin-top:14px">
+  <div><label>Pixel size (m)</label><input type="number" name="pixel_size" value="10" step="any" min="0.1"><div class="hint">10 = Sentinel-2, 30 = Landsat</div></div>
+  <div><label>Sensitivity threshold (0.1 - 0.9)</label><input type="number" name="threshold" value="0.5" step="0.05" min="0.1" max="0.9"><div class="hint">Pixel is "cleared" if probability is above this</div></div>
+  <div><label>Alert limit (ha)</label><input type="number" name="alert_limit" value="10" step="any" min="0"><div class="hint">Alert if total (or any single patch) exceeds this</div></div>
+  <div><label>Minimum patch area (ha)</label><input type="number" name="min_area" value="0.1" step="any" min="0"><div class="hint">Smaller patches are dropped as noise</div></div>
+ </div>
+ <details style="margin-top:14px"><summary><b>Optional</b>: dates, cloud mask, authorised zones</summary>
+  <div class="grid" style="margin-top:12px">
+   <div><label>BEFORE date</label><input type="date" name="date_before"></div>
+   <div><label>AFTER date</label><input type="date" name="date_after"><div class="hint">Warns if the dates are &gt;60 days apart in season</div></div>
+   <div><label>Cloud mask (image)</label><input type="file" name="cloud_mask" accept=".png,.jpg,.jpeg,.tif,.tiff"><div class="hint">Non-zero pixels = cloud; excluded from area</div></div>
+   <div><label>Authorised-felling zones</label><input type="file" name="zones" accept=".geojson,.json"><div class="hint">GeoJSON (EPSG:4326); needs a georeferenced GeoTIFF</div></div>
+   <div><label>Area name (for history)</label><input type="text" name="aoi" placeholder="e.g. Chikmagalur block 7"></div>
+   <div><label><input type="checkbox" name="match_hist" style="width:auto"> Match AFTER colours to BEFORE</label><div class="hint">Reduces seasonal / brightness differences</div></div>
+  </div></details>
+ <p><button type="submit">Detect forest loss</button></p>
+</form>
+<h2>Recent detections</h2>
+{% if history %}<table><tr><th>Time</th><th>Area</th><th>Detector</th><th>Validated</th><th>Cleared (ha)</th><th>% changed</th><th>Patches</th><th>Status</th></tr>
+{% for h in history %}<tr><td>{{ h.timestamp }}</td><td>{{ h.aoi }}</td><td>{{ h.detector }}</td><td>{{ 'yes' if h.validated else 'no' }}</td><td>{{ '%.2f'|format(h.hectares) }}</td><td>{{ '%.2f'|format(h.pct_changed) }}</td><td>{{ h.patch_count }}</td><td>{{ h.status }}</td></tr>{% endfor %}</table>
+{% else %}<p class="small">No detections yet.</p>{% endif %}
+<p class="small">E-mail alerts: {{ 'enabled' if email else 'disabled (set FW_EMAIL_ENABLED=1 and the FW_SMTP_* variables)' }}.</p>
+{% endblock %}

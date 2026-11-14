@@ -1,0 +1,24 @@
+{% if not validated %}<div class="banner warn"><b>Not validated.</b> Detector "{{ detector }}" is {% if meta.get('trained_on') == 'synthetic' %}trained on synthetic images only{% else %}a rule-based or untested detector{% endif %}. Treat these results as a demonstration, not as measured accuracy.</div>{% endif %}
+{% if alert_total %}<div class="banner alert">ALERT: estimated forest loss {{ '%.2f'|format(stats.hectares) }} ha exceeds the limit of {{ stats.alert_limit_ha }} ha. Flag for field verification.</div>
+{% elif alert_patches %}<div class="banner alert">ALERT: patch(es) {{ alert_patches|join(', ') }} exceed the limit of {{ stats.alert_limit_ha }} ha. Flag for field verification.</div>
+{% else %}<div class="banner ok">No alert: loss is below the {{ stats.alert_limit_ha }} ha limit.</div>{% endif %}
+{% for w in warnings %}<div class="banner warn">{{ w }}</div>{% endfor %}
+{% if caveat %}<div class="banner warn">RGB image without georeferencing: the hectare value assumes {{ stats.pixel_size }} m pixels. Screenshots and resized images do not have a true ground size, so prefer the percentage of the scene.</div>{% endif %}
+<div class="stats">
+ <div class="stat"><b>{{ '{:,}'.format(stats.changed_pixels) }}</b><span>changed pixels</span></div>
+ <div class="stat"><b>{{ '%.2f'|format(stats.pct_changed) }}%</b><span>of valid scene</span></div>
+ <div class="stat"><b>{{ '%.2f'|format(stats.hectares) }} ha</b><span>cleared area</span></div>
+ <div class="stat"><b>{{ stats.patches }}</b><span>patches</span></div>
+ <div class="stat"><b>{{ '%.1f'|format(stats.masked_pct) }}%</b><span>masked (cloud / no data)</span></div>
+</div>
+<p class="small">Detector: {{ detector }} | threshold {{ stats.threshold }} | pixel size {{ stats.pixel_size }} m | cloud mask: {{ stats.cloud_mask_source }} | image {{ stats.image_size }}<br>
+Area = changed pixels x pixel size&sup2; / 10,000</p>
+<div class="imgs">
+ <figure><img alt="before" src="data:image/png;base64,{{ img.before }}"><figcaption>BEFORE</figcaption></figure>
+ <figure><img alt="after" src="data:image/png;base64,{{ img.after }}"><figcaption>AFTER</figcaption></figure>
+ <figure><img alt="overlay" src="data:image/png;base64,{{ img.overlay }}"><figcaption>Detected clearing (red)</figcaption></figure>
+ <figure><img alt="mask" src="data:image/png;base64,{{ img.mask }}"><figcaption>Change mask</figcaption></figure>
+</div>
+{% if patches %}<h2>Patches</h2><table><tr><th>#</th><th>Area (ha)</th><th>Pixels</th><th>Status</th></tr>
+{% for p in patches[:50] %}<tr><td>{{ p.id }}</td><td>{{ '%.2f'|format(p.area_ha) }}</td><td>{{ p.pixels }}</td><td>{{ p.status }}</td></tr>{% endfor %}</table>
+{% if patches|length > 50 %}<p class="small">Showing 50 of {{ patches|length }} patches; the GeoJSON has all of them.</p>{% endif %}{% endif %}

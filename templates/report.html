@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Forest Watch report {{ run_id }}</title><style>{% include 'style.css' %} main{max-width:900px}</style></head>
+<body><header><h1>Forest Watch report</h1><span>run {{ run_id }}</span></header><main>
+{% include '_results.html' %}
+<p class="small">Forest Watch detects forest loss between two dates. It cannot prove that clearing was illegal: every flagged area needs field verification.
+{% if has_zones %} Patches marked "authorised" intersect the supplied authorised-felling zones; the rest are "suspicious - needs field verification".{% endif %}</p>
+</main></body></html>

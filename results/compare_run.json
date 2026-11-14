@@ -1,0 +1,235 @@
+{
+  "args": {
+    "cmd": "compare",
+    "seed": 42,
+    "data": "/tmp/claude-0/w/synth",
+    "epochs": 25,
+    "tile": 128,
+    "base": 16,
+    "levels": 3,
+    "lr": 0.002,
+    "neg_frac": 0.2,
+    "target_recall": 0.8,
+    "pixel_size": 30.0,
+    "trained_on": "synthetic"
+  },
+  "rows": [
+    {
+      "model": "NDVI difference",
+      "threshold": 1.0,
+      "precision": 0.5529,
+      "recall": 0.9688,
+      "f1": 0.704,
+      "iou": 0.5432,
+      "dice": 0.704,
+      "commission_error": 0.4471,
+      "omission_error": 0.0312
+    },
+    {
+      "model": "Random Forest",
+      "threshold": 0.9889,
+      "precision": 0.9682,
+      "recall": 0.8021,
+      "f1": 0.8773,
+      "iou": 0.7815,
+      "dice": 0.8773,
+      "commission_error": 0.0318,
+      "omission_error": 0.1979
+    },
+    {
+      "model": "XGBoost",
+      "threshold": 0.9916,
+      "precision": 0.9712,
+      "recall": 0.8016,
+      "f1": 0.8783,
+      "iou": 0.783,
+      "dice": 0.8783,
+      "commission_error": 0.0288,
+      "omission_error": 0.1984
+    },
+    {
+      "model": "UNet-diff",
+      "threshold": 0.9325,
+      "precision": 0.9997,
+      "recall": 0.8402,
+      "f1": 0.913,
+      "iou": 0.84,
+      "dice": 0.913,
+      "commission_error": 0.0003,
+      "omission_error": 0.1598
+    },
+    {
+      "model": "Siamese U-Net",
+      "threshold": 0.8546,
+      "precision": 0.995,
+      "recall": 0.8097,
+      "f1": 0.8928,
+      "iou": 0.8064,
+      "dice": 0.8928,
+      "commission_error": 0.005,
+      "omission_error": 0.1903
+    }
+  ],
+  "by_size": {
+    "NDVI difference": {
+      "small": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "iou": 0.0,
+        "dice": 0.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 0
+      },
+      "medium": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "iou": 1.0,
+        "dice": 1.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 1
+      },
+      "large": {
+        "precision": 0.9894350777315525,
+        "recall": 0.9687533497695359,
+        "f1": 0.9789849970210691,
+        "iou": 0.9588350750623309,
+        "dice": 0.9789849970210691,
+        "commission_error": 0.010564922268447519,
+        "omission_error": 0.031246650230464135,
+        "n_components": 35
+      }
+    },
+    "Random Forest": {
+      "small": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "iou": 0.0,
+        "dice": 0.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 0
+      },
+      "medium": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1": 0.8333333333333333,
+        "iou": 0.7142857142857143,
+        "dice": 0.8333333333333333,
+        "commission_error": 0.0,
+        "omission_error": 0.2857142857142857,
+        "n_components": 1
+      },
+      "large": {
+        "precision": 0.9998664083895531,
+        "recall": 0.8022832029156394,
+        "f1": 0.8902435398019566,
+        "iou": 0.8021972132904609,
+        "dice": 0.8902435398019566,
+        "commission_error": 0.0001335916104469037,
+        "omission_error": 0.19771679708436063,
+        "n_components": 35
+      }
+    },
+    "XGBoost": {
+      "small": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "iou": 0.0,
+        "dice": 0.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 0
+      },
+      "medium": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1": 0.8333333333333333,
+        "iou": 0.7142857142857143,
+        "dice": 0.8333333333333333,
+        "commission_error": 0.0,
+        "omission_error": 0.2857142857142857,
+        "n_components": 1
+      },
+      "large": {
+        "precision": 1.0,
+        "recall": 0.8018544324150498,
+        "f1": 0.890032422142241,
+        "iou": 0.8018544324150498,
+        "dice": 0.890032422142241,
+        "commission_error": 0.0,
+        "omission_error": 0.19814556758495017,
+        "n_components": 35
+      }
+    },
+    "UNet-diff": {
+      "small": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "iou": 0.0,
+        "dice": 0.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 0
+      },
+      "medium": {
+        "precision": 1.0,
+        "recall": 0.5918367346938775,
+        "f1": 0.7435897435897436,
+        "iou": 0.5918367346938775,
+        "dice": 0.7435897435897436,
+        "commission_error": 0.0,
+        "omission_error": 0.40816326530612246,
+        "n_components": 1
+      },
+      "large": {
+        "precision": 0.9996814069070983,
+        "recall": 0.8408725479686997,
+        "f1": 0.9134257102934328,
+        "iou": 0.8406472699994642,
+        "dice": 0.9134257102934328,
+        "commission_error": 0.00031859309290172,
+        "omission_error": 0.1591274520313003,
+        "n_components": 35
+      }
+    },
+    "Siamese U-Net": {
+      "small": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "iou": 0.0,
+        "dice": 0.0,
+        "commission_error": 0.0,
+        "omission_error": 0.0,
+        "n_components": 0
+      },
+      "medium": {
+        "precision": 1.0,
+        "recall": 0.9387755102040817,
+        "f1": 0.968421052631579,
+        "iou": 0.9387755102040817,
+        "dice": 0.968421052631579,
+        "commission_error": 0.0,
+        "omission_error": 0.061224489795918324,
+        "n_components": 1
+      },
+      "large": {
+        "precision": 0.9977535513709944,
+        "recall": 0.8093579161753671,
+        "f1": 0.8937353889858847,
+        "iou": 0.8078857265140167,
+        "dice": 0.8937353889858847,
+        "commission_error": 0.002246448629005582,
+        "omission_error": 0.19064208382463288,
+        "n_components": 35
+      }
+    }
+  }
+}

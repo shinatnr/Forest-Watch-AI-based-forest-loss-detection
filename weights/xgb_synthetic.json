@@ -1,0 +1,6 @@
+{
+  "trained_on": "synthetic",
+  "kind": "rgb",
+  "note": "Synthetic data only: scores show the pipeline works, not real-world accuracy.",
+  "type": "xgb"
+}

@@ -1,0 +1,16 @@
+torch>=2.0
+numpy
+scipy
+scikit-learn
+scikit-image
+xgboost
+opencv-python-headless
+Pillow
+rasterio
+shapely
+flask
+matplotlib
+joblib
+pytest
+# optional, only for gee_export.py:
+# earthengine-api

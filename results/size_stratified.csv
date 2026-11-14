@@ -1,0 +1,16 @@
+model,size,n_components,precision,recall,f1,iou
+NDVI difference,small,0,0.0,0.0,0.0,0.0
+NDVI difference,medium,1,1.0,1.0,1.0,1.0
+NDVI difference,large,35,0.9894,0.9688,0.979,0.9588
+Random Forest,small,0,0.0,0.0,0.0,0.0
+Random Forest,medium,1,1.0,0.7143,0.8333,0.7143
+Random Forest,large,35,0.9999,0.8023,0.8902,0.8022
+XGBoost,small,0,0.0,0.0,0.0,0.0
+XGBoost,medium,1,1.0,0.7143,0.8333,0.7143
+XGBoost,large,35,1.0,0.8019,0.89,0.8019
+UNet-diff,small,0,0.0,0.0,0.0,0.0
+UNet-diff,medium,1,1.0,0.5918,0.7436,0.5918
+UNet-diff,large,35,0.9997,0.8409,0.9134,0.8406
+Siamese U-Net,small,0,0.0,0.0,0.0,0.0
+Siamese U-Net,medium,1,1.0,0.9388,0.9684,0.9388
+Siamese U-Net,large,35,0.9978,0.8094,0.8937,0.8079

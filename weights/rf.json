@@ -1,0 +1,6 @@
+{
+  "trained_on": "synthetic",
+  "kind": "bgrn",
+  "data": "/tmp/claude-0/w/synth",
+  "type": "rf"
+}
